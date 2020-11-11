@@ -1,19 +1,5 @@
 # mall
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 用原生js写代码
+## vue3.0 脚手架4 vue-router vuex
+## ctr+shift+V预览文件
