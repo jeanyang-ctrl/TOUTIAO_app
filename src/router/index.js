@@ -3,10 +3,10 @@ import {
   createWebHashHistory
 } from 'vue-router'
 
-const Home = () => import( /* webpackChunkName: "about" */ '../views/Home.vue')
-const Profile = () => import( /* webpackChunkName: "about" */ '../views/Profile.vue')
-const Cart = () => import( /* webpackChunkName: "about" */ '../views/Cart.vue')
-const Categories = () => import( /* webpackChunkName: "about" */ '../views/Categories.vue')
+const Home = () => import( /* webpackChunkName: "about" */ '@/views/home/Home.vue')
+const Profile = () => import( /* webpackChunkName: "about" */ '../views/Profile/Profile.vue')
+const Cart = () => import( /* webpackChunkName: "about" */ '../views/Cart/Cart.vue')
+const Categories = () => import( /* webpackChunkName: "about" */ '../views/Categories/Categories.vue')
 
 
 const routes = [{
