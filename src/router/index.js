@@ -12,7 +12,6 @@ const Cart = () =>
   import(/* webpackChunkName: "about" */ "../views/Cart/Cart.vue");
 const Categories = () =>
   import(/* webpackChunkName: "about" */ "../views/Categories/Categories.vue");
-// const LayOut = () => import( /* webpackChunkName: "about" */ '../views/Layout/LayOut.vue')
   const LogReg = () =>
   import(/* webpackChunkName: "about" */ "@/views/Profile/Logreg/LogReg.vue");
 
@@ -21,7 +20,7 @@ const Categories = () =>
 const routes = [
   {
     path: "/",
-    redirect: "/profile",
+    redirect: "/login",
   },
   {
     path: "/login",

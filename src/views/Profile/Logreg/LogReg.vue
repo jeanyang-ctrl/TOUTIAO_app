@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import { login, sendSms } from "@/network/profile/profile";
+import { login, sendSms } from "@/network/profile/user";
 
 export default {
   name: "LogReg",
@@ -107,7 +107,7 @@ export default {
         // 登录成功，跳转回原来页面
         // back 的方式不严谨，后面讲功能优化的时候再说
         // this.$router.back();
-        this.$router.push('/home')
+        this.$router.push('/profile')
       } catch (err) {
         if (err.response.status === 400) {
           this.$toast.fail("手机号或验证码错误");
