@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 import { getUserInfo } from "@/network/profile/user";
 
 export default {
@@ -84,13 +84,14 @@ export default {
     };
   },
   computed: {
-    ...mapState(['user'])
+    ...mapState(["user"]),
+    
   },
   watch: {},
   created() {
     // 如果用户登录了，则请求加载用户信息数据
     if (this.user) {
-      this.loadUserInfo()
+      this.loadUserInfo();
     }
   },
   mounted() {},
@@ -106,7 +107,7 @@ export default {
           console.log("退出成功");
           // on confirm
           // 确认退出：清除登录状态（容器中的 user + 本地存储中的 user）
-          this.$store.commit('setUser', null)
+          this.$store.commit("setUser", null);
         })
         .catch(() => {
           // on cancel
@@ -114,15 +115,16 @@ export default {
         });
     },
 
-      async loadUserInfo () {
-        console.log("加载数据中");
-        try {
-          const { data } = await getUserInfo()
-          this.userInfo = data.data
-        } catch (err) {
-          this.$toast('获取数据失败，请稍后重试')
-        }
+    async loadUserInfo() {
+      console.log("加载数据中");
+      console.log(this.$store.state.user.token);
+      try {
+        const { data } = await getUserInfo();
+        this.userInfo = data.data;
+      } catch (err) {
+        this.$toast("获取数据失败，请稍后重试");
       }
+    },
   },
 };
 </script>

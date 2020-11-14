@@ -101,7 +101,7 @@ export default {
       try {
         const { data } = await login(this.user);
         console.log(data.data);
-        this.$store.commit("setUser", data);
+        this.$store.commit("setUser", data.data);
         this.$toast.success("登录成功");
 
         // 登录成功，跳转回原来页面

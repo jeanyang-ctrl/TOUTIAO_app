@@ -2,7 +2,7 @@
  * 用户相关请求模块
  */
 import request from '@/network/request'
-// import store from '@/store'
+import store from '@/store'
 console.log(request)
 export const login = data => {
   return request({
@@ -37,4 +37,5 @@ export const getUserInfo = () => {
       Authorization: `Bearer ${store.state.user.token}`
     }
   })
+ 
 }
