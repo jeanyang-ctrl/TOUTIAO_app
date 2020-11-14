@@ -19,7 +19,7 @@
         <img src="@/assets/img/tabbar/category_active.svg" alt="" />
       </template>
       <template v-slot:item-text>
-        <div>分类</div>y
+        <div>分类</div>
       </template>
     </Tab-Bar-Item>
     <tab-bar-item path ='/cart' activeColor="pink">
@@ -41,7 +41,7 @@
         <img src="@/assets/img/tabbar/profile_active.svg" alt="" />
       </template>
       <template v-slot:item-text>
-        <div>主页</div>
+        <div>{{ $store.state.user ? '我的' : '未登录' }}</div>
       </template>
     </tab-bar-item >
   </tab-bar>

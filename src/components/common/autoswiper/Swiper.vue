@@ -25,11 +25,7 @@ export default {
 </script>
 
 <style scoped>
-ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
+
 .focus {
     position: relative;
     /* padding-top: 44px; */

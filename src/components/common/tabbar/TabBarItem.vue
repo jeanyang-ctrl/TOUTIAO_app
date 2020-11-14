@@ -57,14 +57,15 @@ export default {
 
 <style>
 .tab-bar-item {
-  height: 49px;
+  height: 100px;
   flex: 1;
   /* line-height: 49px; */
 }
 .tab-bar-item .item-icon img,
 .item-active-icon img {
-  width: 24px;
-  height: 24px;
+  /* 本来是24px */
+  width: 54px;
+  height: 54px;
   margin-top: 5px;
   vertical-align: middle;
 }

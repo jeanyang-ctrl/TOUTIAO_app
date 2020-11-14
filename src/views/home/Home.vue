@@ -10,18 +10,20 @@
   </nav-bar>
   <swiper>
   </swiper>
+  <rec-view/>
 </template>
 
 <script>
 // @ is an alias to /src
 import NavBar from "@/components/common/navbar/NavBar.vue";
 import Swiper from "@/components/common/autoswiper/Swiper.vue";
-
+import RecView from "@/views/home/childcpns/RecView.vue";
 export default {
   name: "Home",
   components: {
     NavBar,
-    Swiper
+    Swiper,
+    RecView
   },
 };
 </script>
