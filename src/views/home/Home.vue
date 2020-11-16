@@ -1,36 +1,58 @@
 <template>
-  <nav-bar class="home-nav">
-    <!-- <template v-slot:left>
-      </template> -->
-    <template v-slot:center>
-      <div>bilibili购物街</div>
-    </template>
-    <!-- <template v-slot:right>
-      </template> -->
-  </nav-bar>
-  <swiper>
-  </swiper>
-  <rec-view/>
+  <div class="home-container">
+    <van-nav-bar  class="home-nav-bar">
+      <template #title>
+        <van-button class="search-btn" plain type="info" round>
+          <van-icon name="search" color="#ff557f" size="18" />搜索</van-button
+        >
+      </template>
+    </van-nav-bar>
+    <home-tab></home-tab>
+  </div>
 </template>
 
 <script>
+
 // @ is an alias to /src
-import NavBar from "@/components/common/navbar/NavBar.vue";
-import Swiper from "@/components/common/autoswiper/Swiper.vue";
-import RecView from "@/views/home/childcpns/RecView.vue";
+import HomeTab from "@/views/Home/childcpns/HomeTab.vue";
+
 export default {
   name: "Home",
   components: {
-    NavBar,
-    Swiper,
-    RecView
+    HomeTab,
+  },
+  data() {
+    return {
+    };
   },
 };
 </script>
 
+
 <style scoped>
-.home-nav {
+.home-container {
+  color: #ccc;
+}
+.home-container >>> .home-nav-bar{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top:0;
+}
+.home-container >>> .van-nav-bar__content {
   background-color: var(--color-tint);
-  color: #fff;
+}
+.home-container >>> .search-btn {
+  width: 555px;
+  height: 64px;
+  border: none;
+  background-color: pink;
+  opacity: 0.6;
+}
+/* .home-container >>> .van-button::before {
+  font-style: 32px!important;
+} */
+.home-container >>> .van-nav-bar__title {
+  max-width: unset;
 }
 </style>

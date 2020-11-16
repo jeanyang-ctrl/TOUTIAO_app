@@ -44,15 +44,11 @@
     <!-- 宫格导航 -->
     <van-grid class="grid-nav mb-9" :column-num="2" clickable>
       <van-grid-item class="grid-item">
-        <template #left-icon>
-          <van-icon class="login-icon" name="contact"
-        /></template>
+        <van-icon name="chat-o" color="#1989fa" />
         <span class="text">收藏</span>
       </van-grid-item>
       <van-grid-item class="grid-item">
-        <template #left-icon>
-          <van-icon class="login-icon" name="contact"
-        /></template>
+        <van-icon name="contact" />
         <span class="text">历史</span>
       </van-grid-item>
     </van-grid>
@@ -85,7 +81,6 @@ export default {
   },
   computed: {
     ...mapState(["user"]),
-    
   },
   watch: {},
   created() {
@@ -200,21 +195,15 @@ export default {
 .text {
   font-size: 23px;
 }
-
+/* 宫格导航 */
 .grid-nav .grid-item {
   height: 141px;
+  background-color: pink!important;
 }
-i.toutiao {
-  font-size: 45px;
-}
-.toutiao-shoucang {
-  color: #eb5253;
-}
-.toutiao-lishi {
-  color: #ff9d1d;
-}
+
 span.text {
   font-size: 28px;
+  color: black;
 }
 
 .logout-cell {

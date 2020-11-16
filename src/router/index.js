@@ -5,7 +5,7 @@ import {
 } from "vue-router";
 
 const Home = () =>
-  import(/* webpackChunkName: "about" */ "@/views/home/Home.vue");
+  import(/* webpackChunkName: "about" */ "@/views/Home/Home.vue");
 const Profile = () =>
   import(/* webpackChunkName: "about" */ "../views/Profile/Profile.vue");
 const Cart = () =>
@@ -13,7 +13,7 @@ const Cart = () =>
 const Categories = () =>
   import(/* webpackChunkName: "about" */ "../views/Categories/Categories.vue");
   const LogReg = () =>
-  import(/* webpackChunkName: "about" */ "@/views/Profile/Logreg/LogReg.vue");
+  import(/* webpackChunkName: "about" */ "@/views/Profile/logreg/LogReg.vue");
 
 
 
