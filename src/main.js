@@ -12,7 +12,11 @@ import {
   Field,
   Icon,
   Toast,
+  Tab,
+  Tabs,
+  List,
   CountDown,
+  PullRefresh
 } from "vant";
 import App from "./App.vue";
 import router from "./router";
@@ -26,12 +30,16 @@ createApp(App)
   .use(Button)
   .use(NavBar)
   .use(Form)
+  .use(Tab)
+  .use(Tabs)
   .use(Dialog)
   .use(Toast)
   .use(Cell)
+  .use(PullRefresh)
   .use(CellGroup)
   .use(VanImage)
   .use(Grid)
+  .use(List)
   .use(GridItem)
   .use(CountDown)
   .use(Icon)
