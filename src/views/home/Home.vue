@@ -1,6 +1,6 @@
 <template>
   <div class="home-container">
-    <van-nav-bar  class="home-nav-bar">
+    <van-nav-bar class="home-nav-bar">
       <template #title>
         <van-button class="search-btn" plain type="info" round>
           <van-icon name="search" color="#ff557f" size="18" />搜索</van-button
@@ -12,7 +12,6 @@
 </template>
 
 <script>
-
 // @ is an alias to /src
 import HomeTab from "@/views/Home/childcpns/HomeTab.vue";
 
@@ -22,22 +21,20 @@ export default {
     HomeTab,
   },
   data() {
-    return {
-    };
+    return {};
   },
 };
 </script>
-
 
 <style scoped>
 .home-container {
   color: #ccc;
 }
-.home-container >>> .home-nav-bar{
+.home-container >>> .home-nav-bar {
   position: fixed;
   left: 0;
   right: 0;
-  top:0;
+  top: 0;
 }
 .home-container >>> .van-nav-bar__content {
   background-color: var(--color-tint);
