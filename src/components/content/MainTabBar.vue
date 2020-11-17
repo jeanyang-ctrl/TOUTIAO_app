@@ -1,6 +1,6 @@
 <template>
-   <tab-bar>
-    <tab-bar-item   path ='/home'  activeColor="pink">
+  <tab-bar>
+    <tab-bar-item path="/home" activeColor="pink">
       <template v-slot:item-icon>
         <img src="@/assets/img/tabbar/home.svg" alt="" />
       </template>
@@ -10,8 +10,8 @@
       <template v-slot:item-text>
         <div>首页</div>
       </template>
-    </tab-bar-item >
-    <tab-bar-item path ='/categories' activeColor="pink">
+    </tab-bar-item>
+    <tab-bar-item path="/categories" activeColor="pink">
       <template v-slot:item-icon>
         <img src="@/assets/img/tabbar/category.svg" alt="" />
       </template>
@@ -21,8 +21,8 @@
       <template v-slot:item-text>
         <div>分类</div>
       </template>
-    </Tab-Bar-Item>
-    <tab-bar-item path ='/cart' activeColor="pink">
+    </tab-bar-item>
+    <tab-bar-item path="/cart" activeColor="pink">
       <template v-slot:item-icon>
         <img src="@/assets/img/tabbar/shopcart.svg" alt="" />
       </template>
@@ -32,8 +32,8 @@
       <template v-slot:item-text>
         <div>购物车</div>
       </template>
-    </tab-bar-item >
-    <tab-bar-item  path ='/profile' activeColor="pink">
+    </tab-bar-item>
+    <tab-bar-item path="/profile" activeColor="pink">
       <template v-slot:item-icon>
         <img src="@/assets/img/tabbar/profile.svg" alt="" />
       </template>
@@ -41,9 +41,9 @@
         <img src="@/assets/img/tabbar/profile_active.svg" alt="" />
       </template>
       <template v-slot:item-text>
-        <div>{{ $store.state.user ? '我的' : '未登录' }}</div>
+        <div>{{ $store.state.user ? "我的" : "未登录" }}</div>
       </template>
-    </tab-bar-item >
+    </tab-bar-item>
   </tab-bar>
 </template>
 
@@ -54,12 +54,10 @@ import TabBarItem from "@/components/common/tabbar/TabBarItem";
 // import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: 'MainTabBar',
+  name: "MainTabBar",
   components: {
-      TabBar,
+    TabBar,
     TabBarItem,
-  }
-}
+  },
+};
 </script>
-
-

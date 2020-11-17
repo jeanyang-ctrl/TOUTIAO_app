@@ -20,6 +20,7 @@ export default {
   box-shadow: 0 -1px 1px rgba(100, 100, 100, 0.2);
   text-align: center;
   background-color: #f6f6f6;
+  font-size: var( --font-size);
 }
 
 

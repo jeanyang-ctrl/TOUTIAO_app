@@ -15,6 +15,7 @@ import {
   Tab,
   Tabs,
   List,
+  Popup,
   CountDown,
   PullRefresh
 } from "vant";
@@ -39,6 +40,7 @@ createApp(App)
   .use(CellGroup)
   .use(VanImage)
   .use(Grid)
+  .use(Popup)
   .use(List)
   .use(GridItem)
   .use(CountDown)
