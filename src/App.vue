@@ -1,18 +1,18 @@
 <template>
     <router-view></router-view>
-    <!-- <lay-out/> -->
-    <main-tab-bar/>
+
+    <!-- <main-tab-bar/> -->
 </template>
 
 <script>
-import MainTabBar from "@/components/content/MainTabBar";
-// import LayOut from "@/views/Layout/LayOut"
+// import MainTabBar from "@/components/content/MainTabBar";
+import LayOut from "@/views/Layout/LayOut"
 
 export default {
   name: "app",
   components: {
-    //  LayOut,
-    MainTabBar
+      LayOut,
+
   }
 };
 </script>

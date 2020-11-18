@@ -62,6 +62,9 @@ export default {
       return this.active;
     },
   },
+  watch: {
+
+  },
   created() {
     this.loadChannels();
   },

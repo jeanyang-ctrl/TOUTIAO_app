@@ -17,7 +17,8 @@ import {
   List,
   Popup,
   CountDown,
-  PullRefresh
+  PullRefresh,
+  Search
 } from "vant";
 import App from "./App.vue";
 import router from "./router";
@@ -45,6 +46,7 @@ createApp(App)
   .use(GridItem)
   .use(CountDown)
   .use(Icon)
+  .use(Search)
   .use(Field)
   .use(store)
   .use(router)
