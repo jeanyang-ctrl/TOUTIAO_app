@@ -19,7 +19,7 @@
         <img src="@/assets/img/tabbar/category_active.svg" alt="" />
       </template>
       <template v-slot:item-text>
-        <div>分类</div>
+        <div>西瓜视频</div>
       </template>
     </tab-bar-item>
     <tab-bar-item path="/cart" activeColor="pink">
@@ -30,7 +30,7 @@
         <img src="@/assets/img/tabbar/shopcart_active.svg" alt="" />
       </template>
       <template v-slot:item-text>
-        <div>购物车</div>
+        <div>放映厅</div>
       </template>
     </tab-bar-item>
     <tab-bar-item path="/profile" activeColor="pink">

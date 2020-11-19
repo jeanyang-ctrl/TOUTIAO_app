@@ -58,7 +58,7 @@ import {
   getAllChannels,
   addUserChannel,
   deleteUserChannel,
-} from "@/network/home/article";
+} from "@/network/home/channel";
 
 import { mapState } from "vuex";
 
@@ -120,8 +120,9 @@ export default {
         } catch (err) {
           this.$toast("保存失败 稍后重试");
         }
-      } else {
-        //存储到本地
+      } 
+      else {
+        //用户未登录状态下存储到本地
         setItem("TOUTIAO_CHANNELS", this.mychannels);
       }
     },

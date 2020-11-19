@@ -3,7 +3,6 @@
  */
 import request from '@/network/request'
 import store from '@/store'
-console.log(request)
 export const login = data => {
   return request({
     method: 'POST',

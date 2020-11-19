@@ -4,6 +4,7 @@ import {
   createWebHistory,
 } from "vue-router";
 
+// 懒加载
 const Home = () =>
   import(/* webpackChunkName: "about" */ "@/views/Home/Home.vue");
 const Profile = () =>
@@ -19,6 +20,11 @@ const HomeSearch = () =>
   import(
     /* webpackChunkName: "about" */ "@/views/Home/childcpns/HomeSearch.vue"
   );
+const ArticleContent = () =>
+  import(
+    /* webpackChunkName: "about" */ "@/components/content/article/ArticleContent.vue"
+  );
+
 const routes = [
   // {
   //   path: "/",
@@ -28,16 +34,18 @@ const routes = [
     path: "/login",
     name: "login",
     component: LogReg,
-  },{
+  },
+  {
     path: "/search",
     name: "search ",
     component: HomeSearch,
   },
-  // {
-  //   path: "/login",
-  //   name: "login",
-  //   component: LogReg,
-  // },
+  {
+    path: "/article/:articleId",
+    name: "article",
+    component: ArticleContent,
+    props:true
+  },
   {
     path: "/",
     name: "layout",

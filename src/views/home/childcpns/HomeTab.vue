@@ -1,13 +1,16 @@
 <template>
   <div class="home-tab">
+    <!-- 标签栏 -->
     <van-tabs class="channel-tabs" v-model:active="active" swipeable animated>
       <van-tab
         :title="channel.name"
         v-for="channel in channels"
         :key="channel.id"
       >
+        <!-- 频道列表 -->
         <article-list :channel="channel"></article-list>
       </van-tab>
+      <!-- 汉堡插条 -->
       <template v-slot:nav-right>
         <div class="placeholder">123</div>
         <div class="hamberge-btn" @click="showPopup">
@@ -20,6 +23,7 @@
           position="bottom"
           :style="{ height: '100%' }"
         >
+          <!-- 频道编辑 -->
           <channel-edit
             :mychannels="channels"
             :myactive="active"
@@ -62,9 +66,7 @@ export default {
       return this.active;
     },
   },
-  watch: {
-
-  },
+  watch: {},
   created() {
     this.loadChannels();
   },
@@ -72,26 +74,42 @@ export default {
     ...mapState(["user"]),
   },
   methods: {
-    async loadChannels() {
-      let channels = [];
-      if (this.user) {
-        try {
-          const { data } = await getUserChannels();
-          this.channels = data.data.channels;
-        } catch (err) {
-          this.$toast("获取频道数据失败");
+    // async loadChannels() {
+    //   let channels = [];
+    //   if (this.user) {   
+    //   } else {
+    //   }
+    //   this.channels = channels;
+    // },
+    async loadChannels () {
+      try {
+        // const { data } = await getUserChannels()
+        // this.channels = data.data.channels
+        let channels = []
+
+        if (this.user) {
+          // 已登录，请求获取用户频道列表
+          const { data } = await getUserChannels()
+          channels = data.data.channels
+        } else {
+          // 未登录，判断是否有本地的频道列表数据
+          const localChannels = getItem('TOUTIAO_CHANNELS')
+          //    有，拿来使用
+          if (localChannels) {
+            channels = localChannels
+          } else {
+            //    没有，请求获取默认频道列表
+            const { data } = await getUserChannels()
+            channels = data.data.channels
+          }
         }
-      } else {
-        const localChannels = getItem("TOUTIAO_CHANNELS");
+
+        this.channels = channels
+      } catch (err) {
+        this.$toast('获取频道数据失败')
       }
-      if (localChannels) {
-        channels = localChannels;
-      } else {
-        const { data } = await getUserChannels();
-        this.channels = data.data.channels;
-      }
-      this.channels = channels;
     },
+
 
     showPopup() {
       this.isChannelEditShow = !this.isChannelEditShow;

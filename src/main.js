@@ -18,7 +18,9 @@ import {
   Popup,
   CountDown,
   PullRefresh,
-  Search
+  Search,
+  Loading,
+  Divider,
 } from "vant";
 import App from "./App.vue";
 import router from "./router";
@@ -32,7 +34,9 @@ createApp(App)
   .use(Button)
   .use(NavBar)
   .use(Form)
+  .use(Loading)
   .use(Tab)
+  .use(Divider)
   .use(Tabs)
   .use(Dialog)
   .use(Toast)

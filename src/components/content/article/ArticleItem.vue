@@ -1,4 +1,5 @@
 <template>
+<!-- 个人觉的可以封装为独立的组件 -->
   <div class="home-article-item van-multi-ellipsis--l2">
     <van-cell>
       <template #title>

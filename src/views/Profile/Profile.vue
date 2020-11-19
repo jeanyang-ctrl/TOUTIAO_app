@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-    <!-- /已登录头部 -->
+    <!-- 已登录头部 -->
 
     <!-- 未登录头部 -->
     <div v-else class="header not-login">

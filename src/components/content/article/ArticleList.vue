@@ -13,10 +13,12 @@
         error-text="请求失败，点击重新加载"
         @load="onLoad"
       >
+      <!-- 文章列表项 -->
         <article-item
           v-for="(article, index) in list"
           :key="index"
           :article="article"
+          @click="$router.push(`/article/${article.art_id}`)"
         ></article-item>
       </van-list>
     </van-pull-refresh>
@@ -24,9 +26,11 @@
 </template>
 
 <script>
-import { getNewChannels } from "@/network/home/article";
+import { getArticles } from "@/network/home/article";
 // @ is an alias to /src
 import ArticleItem from "@/components/content/article/ArticleItem";
+
+
 export default {
   name: "ArticleList",
   components: {
@@ -55,7 +59,7 @@ export default {
   methods: {
     async onLoad() {
       try {
-        const { data } = await getNewChannels({
+        const { data } = await getArticles({
           channel_id: this.channel.id, // 频道ID
           // 你可以把 timestamp 理解为页码
           // 如果请求第1页数据：当前最新时间戳 Date.now

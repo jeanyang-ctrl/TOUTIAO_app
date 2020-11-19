@@ -64,9 +64,9 @@ export default {
 .tab-bar-item .item-icon img,
 .item-active-icon img {
   /* 本来是24px */
-  width: 54px;
-  height: 54px;
-  margin-top: 5px;
+  width: 44px;
+  height: 44px;
+  margin-top: 15px;
   vertical-align: middle;
 }
 
