@@ -99,20 +99,17 @@ export default {
           title: "确认退出吗？",
         })
         .then(() => {
-          console.log("退出成功");
           // on confirm
           // 确认退出：清除登录状态（容器中的 user + 本地存储中的 user）
           this.$store.commit("setUser", null);
         })
         .catch(() => {
           // on cancel
-          console.log("取消执行这里");
         });
     },
 
     async loadUserInfo() {
-      console.log("加载数据中");
-      console.log(this.$store.state.user.token);
+      // console.log(this.$store.state.user.token);
       try {
         const { data } = await getUserInfo();
         this.userInfo = data.data;

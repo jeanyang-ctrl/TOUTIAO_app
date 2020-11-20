@@ -1,55 +1,55 @@
 <template>
   <div class="article-content">
     <!-- 导航栏 -->
-    <van-nav-bar class="page-nav-bar" left-arrow title="今日头条" @click-left="$router.back()"></van-nav-bar>
+    <van-nav-bar
+      class="page-nav-bar"
+      left-arrow
+      title="今日头条"
+      @click-left="$router.back('/home')"
+    ></van-nav-bar>
     <!-- 主体区域 -->
     <div class="main-wrap">
       <!-- 加载中 -->
       <div class="loading-wrap" v-if="loading">
-        <van-loading color="#3296fa" vertical >加载中</van-loading>
+        <van-loading color="#3296fa" vertical>加载中</van-loading>
       </div>
 
       <!-- 加载完成-文章详情 -->
       <div class="article-detail" v-else-if="article.aut_id">
         <!-- 文章标题 -->
-        <h1 class="article-title">这是文章标题</h1>
+        <h1 class="article-title">{{ article.title }}</h1>
         <!-- 用户信息 -->
         <van-cell class="user-info" center :border="false">
-          <template #title>
+          <template #icon>
             <van-image
               class="avatar"
               round
               fit="cover"
-              src="https://img.yzcdn.cn/vant/cat.jpeg"
+              :src="article.aut_photo"
             />
-            <div class="user-name">头条号</div>
+          </template>
+          <template #title>
+            <div class="user-name">{{ article.aut_name }}</div>
           </template>
           <template #label>
-            <div class="publish-date">14小时前</div>
+            <div class="publish-date">{{ article.pubdate }}</div>
           </template>
-          <van-button
-            class="follow-btn"
-            type="info"
-            color="#3296fa"
-            round
-            size="small"
-            icon="plus"
-            >关注</van-button
-          >
-          <!-- <van-button
-            class="follow-btn"
-            round
-            size="small"
-          >已关注</van-button>-->
+
+          <!-- <follow-user :article-user="article" ></follow-user> -->
+          <follow-user v-model:is_followed="article.is_followed" :user-id="article.aut_id"></follow-user>
         </van-cell>
 
         <!-- 文章内容 -->
-        <div class="article-content">这是文章内容</div>
+        <div
+          ref="article-content"
+          class="article-content markdown-body"
+          v-html="article.content"
+        ></div>
         <van-divider>正文结束</van-divider>
       </div>
 
       <!-- 加载失败：404 -->
-      <div class="error-wrap" v-if="errStatus === 404">
+      <div class="error-wrap" v-else-if="errStatus === 404">
         <van-icon name="failure" />
         <p class="text">该资源不存在或已删除！</p>
       </div>
@@ -77,6 +77,12 @@
 <script>
 import { getArticleById } from "@/network/home/article";
 
+import { ImagePreview } from "vant";
+
+// import FollowUser from "@/components/common/followuser/FollowUser";
+import FollowUser from "@/components/common/followuser/copyFollowUser";
+
+
 export default {
   name: "ArticleContent",
   data() {
@@ -85,6 +91,9 @@ export default {
       errStatus: 0,
       loading: true,
     };
+  },
+  components: {
+    FollowUser,
   },
   props: {
     articleId: {
@@ -106,8 +115,15 @@ export default {
         // if (Math.random() > 0.5) {
         //   JSON.parse('dsankljdnskaljndlkjsa')
         // }
-        console.log(data);
         this.article = data.data;
+        // error format
+        // setTimeout(function() {
+        //   this.previewImage();
+        // }, 0);
+        // 定时器第一个参数必须是回调函数
+        setTimeout(() => {
+          this.previewImage();
+        }, 0);
       } catch (err) {
         if (err.response && err.response.status === 404) {
           this.errStatus = 404;
@@ -115,11 +131,31 @@ export default {
       }
       this.loading = false;
     },
+    previewImage() {
+      const articleContent = this.$refs["article-content"];
+      const imgs = articleContent.querySelectorAll("img");
+      const images = [];
+      imgs.forEach((item, index) => {
+        images.push(item.src);
+        item.onclick = () => {
+          ImagePreview({
+            images,
+            closeable: true,
+            startPosition: index,
+          });
+          console.log(images);
+        };
+      });
+    },
   },
 };
 </script>
 <style scoped>
-::v-deep .article-container .main-wrap {
+/* 加分号 */
+/* @import '@/assets/css/github-markdown.css'; */
+@import "./github-markdown.css";
+
+::v-deep .main-wrap {
   position: fixed;
   left: 0;
   right: 0;
@@ -138,26 +174,28 @@ export default {
 ::v-deep .user-info {
   padding: 0 32px;
 }
-::v-deep .avatar {
+::v-deep .user-info .avatar {
   width: 70px;
   height: 70px;
   margin-right: 17px;
 }
-::v-deep .van-cell__label {
+::v-deep .user-info .van-cell__label {
   margin-top: 0;
+  text-align: left;
 }
-::v-deep .user-name {
+::v-deep .user-info .user-name {
   font-size: 24px;
   color: #3a3a3a;
+  text-align: left;
 }
-::v-deep .publish-date {
+::v-deep .user-info .publish-date {
   font-size: 23px;
   color: #b7b7b7;
 }
-::v-deep .follow-btn {
+/* ::v-deep .user-info .follow-btn {
   width: 170px;
   height: 58px;
-}
+} */
 
 ::v-deep .article-content {
   padding: 55px 32px;
