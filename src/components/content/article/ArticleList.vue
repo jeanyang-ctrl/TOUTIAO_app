@@ -28,7 +28,7 @@
 <script>
 import { getArticles } from "@/network/home/article";
 // @ is an alias to /src
-import ArticleItem from "@/components/content/article/ArticleItem";
+import ArticleItem from "@/components/content/article/articlelist/ArticleItem";
 
 
 export default {

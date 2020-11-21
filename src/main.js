@@ -21,6 +21,7 @@ import {
   Search,
   Loading,
   Divider,
+  ShareSheet
 } from "vant";
 import App from "./App.vue";
 import router from "./router";
@@ -52,6 +53,7 @@ createApp(App)
   .use(Icon)
   .use(Search)
   .use(Field)
+  .use(ShareSheet)
   .use(store)
   .use(router)
   .mount("#app");

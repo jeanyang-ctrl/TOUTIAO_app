@@ -15,7 +15,7 @@
       </div>
 
       <!-- 加载完成-文章详情 -->
-      <div class="article-detail" v-else-if="article.aut_id">
+      <div class="article-detail" v-else-if="article.pubdate">
         <!-- 文章标题 -->
         <h1 class="article-title">{{ article.title }}</h1>
         <!-- 用户信息 -->
@@ -34,11 +34,13 @@
           <template #label>
             <div class="publish-date">{{ article.pubdate }}</div>
           </template>
-
+          <!-- 关注用户 -->
           <!-- <follow-user :article-user="article" ></follow-user> -->
-          <follow-user v-model:is_followed="article.is_followed" :user-id="article.aut_id"></follow-user>
+          <follow-user
+            v-model:is_followed="article.is_followed"
+            :user-id="article.aut_id"
+          ></follow-user>
         </van-cell>
-
         <!-- 文章内容 -->
         <div
           ref="article-content"
@@ -46,6 +48,13 @@
           v-html="article.content"
         ></div>
         <van-divider>正文结束</van-divider>
+        <!-- 评论区域  -->
+        <comment-list
+          :user-id="article.aut_id"
+          :list="commentList"
+          @onload-success="totalCommentCount = $event.total_count"
+        />
+        <!-- 加载完成结束------文章详情 -->
       </div>
 
       <!-- 加载失败：404 -->
@@ -64,13 +73,34 @@
 
     <!-- 底部区域 -->
     <div class="article-bottom">
-      <van-button class="comment-btn" type="default" round size="small"
-        >写评论</van-button
+      <!-- 发布评论 -->
+      <van-popup
+        v-model:show="isPostShow"
+        position="bottom"
+        closeable
       >
-      <van-icon name="comment-o" info="123" color="#777" />
+        <comment-post  :target="article.art_id"
+        @post-success="onPostSuccess"/></van-popup
+      >
+      <van-button
+        class="comment-btn"
+        type="default"
+        round
+        size="small"
+        @click="isPostShow = true"
+        >写评论
+      </van-button>
+
+      <van-icon name="comment-o" :badge="totalCommentCount" color="#777" />
       <van-icon color="#777" name="star-o" />
       <van-icon color="#777" name="good-job-o" />
-      <van-icon name="share" color="#777777"></van-icon>
+
+      <van-icon name="share" color="#777777" @click="showShare = true" />
+      <van-share-sheet
+        v-model:show="showShare"
+        title="立即分享给好友"
+        :options="options"
+      />
     </div>
   </div>
 </template>
@@ -81,6 +111,9 @@ import { ImagePreview } from "vant";
 
 // import FollowUser from "@/components/common/followuser/FollowUser";
 import FollowUser from "@/components/common/followuser/copyFollowUser";
+import CommentList from "@/components/content/article/CommentList.vue";
+import CommentPost from "@/components/content/article/commentlist/CommentPost.vue";
+
 
 
 export default {
@@ -90,10 +123,26 @@ export default {
       article: {},
       errStatus: 0,
       loading: true,
+      totalCommentCount: 0,
+      isPostShow: false,
+      showShare: false,
+      commentList:[],
+      options: [
+        [
+          { name: "微信", icon: "wechat" },
+          { name: "微博", icon: "weibo" },
+          { name: "QQ", icon: "qq" },
+          { name: "复制链接", icon: "link" },
+          { name: "分享海报", icon: "poster" },
+          { name: "二维码", icon: "qrcode" },
+        ],
+      ],
     };
   },
   components: {
     FollowUser,
+    CommentList,
+    CommentPost
   },
   props: {
     articleId: {
@@ -146,6 +195,16 @@ export default {
           console.log(images);
         };
       });
+    },
+    onPostSuccess(data){
+      this.isPostShow=false;
+      this.totalCommentCount++
+      console.log(data.new_obj);
+      this.commentList.unshift(data.new_obj)
+    },
+    onSelect(option) {
+      Toast(option.name);
+      this.showShare = false;
     },
   },
 };

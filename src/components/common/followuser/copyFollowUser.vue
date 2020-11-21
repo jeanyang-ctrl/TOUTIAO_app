@@ -8,7 +8,7 @@
         round
         :loading="followLoading"
         size="small"
-        v-if="!is_followed"
+        v-if="is_followed"
         @click="onFollow"
       >
         关注
@@ -38,8 +38,6 @@ export default {
     };
   },
   created(){
-    // 
-    this.onFollow()
   },
   // props: {
   // articleUser: {

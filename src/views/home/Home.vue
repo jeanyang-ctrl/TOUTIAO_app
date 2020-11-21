@@ -3,9 +3,10 @@
     <!-- 搜索功能 -->
     <van-nav-bar class="home-nav-bar">
       <template #title>
-        <van-button class="search-btn" plain type="info" round  to="/search">
-          <van-icon name="search" color="#ff557f" size="18" />搜索</van-button
-        >
+        <van-button class="search-btn" plain type="info" round to="/search">
+          <van-icon name="search" color="#ff557f" size="18" />
+          搜索
+        </van-button>
       </template>
     </van-nav-bar>
     <!-- 标签栏 -->
