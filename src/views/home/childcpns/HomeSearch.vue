@@ -6,7 +6,7 @@
       <van-search
         v-model="searchText"
         shape="round"
-        background="var(--color-tint)"
+        background="#E5B1B5"
         show-action
         @search="onSearch"
         @cancel="onCancel"

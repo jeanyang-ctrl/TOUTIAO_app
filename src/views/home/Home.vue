@@ -4,7 +4,7 @@
     <van-nav-bar class="home-nav-bar">
       <template #title>
         <van-button class="search-btn" plain type="info" round to="/search">
-          <van-icon name="search" color="#ff557f" size="18" />
+          <van-icon name="search" color=" var(--color-tint)" size="18" />
           搜索
         </van-button>
       </template>
@@ -40,14 +40,19 @@ export default {
   top: 0;
 }
 .home-container >>> .van-nav-bar__content {
-  background-color: var(--color-tint);
+  background-color: #E5B1B5;
 }
 .home-container >>> .search-btn {
   width: 555px;
   height: 64px;
   border: none;
-  background-color: pink;
+  background-color: var(--color-tint);
   opacity: 0.6;
+  
+}
+.home-container >>> .search-btn i{
+   vertical-align:middle;
+
 }
 /* .home-container >>> .van-button::before {
   font-style: 32px!important;

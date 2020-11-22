@@ -40,29 +40,49 @@
       </div>
     </div>
     <!-- /未登录头部 -->
+   <!-- <div style="height:34px"></div> -->
 
     <!-- 宫格导航 -->
-    <van-grid class="grid-nav mb-9" :column-num="2" clickable>
+    <van-grid class="grid-nav mb-9" :column-num="4" clickable>
       <van-grid-item class="grid-item">
-        <van-icon name="chat-o" color="#1989fa" />
+        <van-icon name="star-o" color="#EABCBF" />
+        <span class="text">消息通知</span>
+      </van-grid-item>
+      <van-grid-item class="grid-item">
+        <van-icon name="gift-o" color="#EABCBF"/>
         <span class="text">收藏</span>
       </van-grid-item>
       <van-grid-item class="grid-item">
-        <van-icon name="contact" />
-        <span class="text">历史</span>
+        <van-icon name="star-o" color="#EABCBF" />
+        <span class="text">浏览历史</span>
+      </van-grid-item>
+      <van-grid-item class="grid-item">
+        <van-icon name="gift-o" color="#EABCBF"/>
+        <span class="text">下载管理</span>
       </van-grid-item>
     </van-grid>
     <!-- /宫格导航 -->
 
-    <van-cell title="消息通知" is-link />
-    <van-cell class="mb-9" title="小智同学" is-link />
+    <van-cell class="bd" title="记录新鲜事" is-link />
+    <van-cell class="bd bd-w" title="小智同学" is-link />
+     <van-grid class=" mb-9" :column-num="4" border="true">
+      <van-grid-item
+        v-for="value in 8"
+        :key="value"
+        icon="photo-o"
+        text="文字"
+      />
+    </van-grid>
+
     <van-cell
       v-if="user"
-      class="logout-cell"
+      class="logout-cell bd  "
       clickable
       title="退出登录"
       @click="onLogout"
     />
+       <div style="height:34px"></div>
+
   </div>
 </template>
 
@@ -122,35 +142,38 @@ export default {
 </script>
 
 <style scoped>
-.header {
-  height: 361px;
+.my-container {
+  background-color: #EABCBF;
+}
+::v-deep .header {
+  height: 400px;
   background: url("~@/assets/img/profile/banner.jpg");
   background-size: cover;
 }
 
-.not-login {
+::v-deep .not-login {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.login-btn {
+::v-deep .login-btn {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.mobile-img {
+::v-deep .mobile-img {
   width: 132px;
   height: 132px;
   margin-bottom: 15px;
 }
-.text {
+::v-deep .text {
   font-size: 28px;
   color: #fff;
 }
 
-.user-info .base-info {
+::v-deep .user-info .base-info {
   height: 231px;
   padding: 76px 32px 23px;
   box-sizing: border-box;
@@ -158,26 +181,26 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-.left {
+::v-deep .left {
   display: flex;
   align-items: center;
 }
-.avatar {
+::v-deep .avatar {
   width: 132px;
   height: 132px;
   border: 4px solid #fff;
   margin-right: 23px;
 }
 
-.name {
+::v-deep .name {
   font-size: 30px;
   color: #fff;
 }
 
-.data-stats {
+::v-deep .data-stats {
   display: flex;
 }
-.data-item {
+::v-deep .data-item {
   height: 130px;
   flex: 1;
   display: flex;
@@ -186,29 +209,38 @@ export default {
   align-items: center;
   color: #fff;
 }
-.count {
+::v-deep .count {
   font-size: 36px;
 }
-.text {
+::v-deep .text {
   font-size: 23px;
 }
 /* 宫格导航 */
-.grid-nav .grid-item {
+::v-deep .grid-nav .grid-item {
   height: 141px;
-  background-color: pink!important;
+  flex-basis: 20%;
 }
 
-span.text {
+::v-deep span.text {
   font-size: 28px;
   color: black;
 }
 
-.logout-cell {
+::v-deep .logout-cell {
   text-align: center;
   color: #d86262;
+  font-size: 33px;
 }
 
-.mb-9 {
-  margin-bottom: 9px;
+.bd{
+  border:5px solid  #EABCBF; 
+  box-shadow: pink;
+}
+.bd-w{
+  border-top: 0;
+}
+::v-deep .mb-9 {
+  margin:0 5px ;
+  
 }
 </style>
