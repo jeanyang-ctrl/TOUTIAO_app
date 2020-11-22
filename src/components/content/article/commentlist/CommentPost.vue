@@ -24,6 +24,12 @@ export default {
       message: "",
     };
   },
+    inject: {
+    articleId: {
+      type: [Number, String, Object],
+      default: null
+    }
+  },
   props: {
     target: {
       type: [Number, String, Object],

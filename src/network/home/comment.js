@@ -37,6 +37,8 @@ export const addCommentLike = (target) => {
   });
 };
 
+
+
 /**
  * 取消评论点赞
  */
@@ -51,7 +53,20 @@ export const deleteCommentLike = (target) => {
     },
   });
 };
-
+/**
+ * 获取指定用户信息
+ */
+export const GetUserPage = (userId) => {
+  return request({
+    method: "GET",
+    url: `/app/v1_0/users/${userId}`,
+    // headers: {
+    //   // 注意：该接口需要授权才能访问
+    //   //       token的数据格式：Bearer token数据，注意 Bearer 后面有个空格
+    //   Authorization: `Bearer ${store.state.user.token}`,
+    // },
+  });
+};
 /**
  * 发布文章评论或评论回复
  */

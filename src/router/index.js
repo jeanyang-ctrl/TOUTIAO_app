@@ -25,11 +25,15 @@ const ArticleContent = () =>
     /* webpackChunkName: "about" */ "@/components/content/article/ArticleContent.vue"
   );
 
+const UserPage = () => import("@/components/content/user/UserPage.vue" );
+
 const routes = [
-  // {
-  //   path: "/",
-  //   redirect: "/login",
-  // },
+  {
+    path: "/user/:userId",
+    name: "user",
+    component: UserPage,
+    props: true,
+  },
   {
     path: "/login",
     name: "login",
@@ -44,7 +48,7 @@ const routes = [
     path: "/article/:articleId",
     name: "article",
     component: ArticleContent,
-    props:true
+    props: true,
   },
   {
     path: "/",

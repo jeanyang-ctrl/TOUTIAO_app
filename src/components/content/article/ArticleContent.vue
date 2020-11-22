@@ -14,19 +14,21 @@
         <van-loading color="#3296fa" vertical>加载中</van-loading>
       </div>
 
-      <!-- 加载完成-文章详情 -->
+      <!-- 加载完成-文章详情-文章列表 -->
       <div class="article-detail" v-else-if="article.pubdate">
         <!-- 文章标题 -->
         <h1 class="article-title">{{ article.title }}</h1>
         <!-- 用户信息 -->
         <van-cell class="user-info" center :border="false">
           <template #icon>
-            <van-image
+           <div @click="$router.replace(`/user/${article.aut_id}`)">
+              <van-image
               class="avatar"
               round
               fit="cover"
               :src="article.aut_photo"
             />
+           </div>
           </template>
           <template #title>
             <div class="user-name">{{ article.aut_name }}</div>
@@ -48,12 +50,23 @@
           v-html="article.content"
         ></div>
         <van-divider>正文结束</van-divider>
-        <!-- 评论区域  -->
+        <!-- 评论区域 -接收回复的事件 -->
         <comment-list
-          :user-id="article.aut_id"
+          :source="article.aut_id"   
           :list="commentList"
           @onload-success="totalCommentCount = $event.total_count"
+          @reply-click="onReplyClick"
         />
+        <!-- 回复评论     开始-->
+        <van-popup
+          v-model:show="isReplyShow"
+          position="bottom"
+          closeable
+           close-icon-position="top-left"
+          :style="{ height: '90%' }"
+        >
+          <comment-reply v-if="isReplyShow" :comment="currentComment"/>
+        </van-popup>
         <!-- 加载完成结束------文章详情 -->
       </div>
 
@@ -74,14 +87,9 @@
     <!-- 底部区域 -->
     <div class="article-bottom">
       <!-- 发布评论 -->
-      <van-popup
-        v-model:show="isPostShow"
-        position="bottom"
-        closeable
-      >
-        <comment-post  :target="article.art_id"
-        @post-success="onPostSuccess"/></van-popup
-      >
+      <van-popup v-model:show="isPostShow" position="bottom" closeable>
+        <comment-post :target="article.art_id" @post-success="onPostSuccess"
+      /></van-popup>
       <van-button
         class="comment-btn"
         type="default"
@@ -112,9 +120,8 @@ import { ImagePreview } from "vant";
 // import FollowUser from "@/components/common/followuser/FollowUser";
 import FollowUser from "@/components/common/followuser/copyFollowUser";
 import CommentList from "@/components/content/article/CommentList.vue";
-import CommentPost from "@/components/content/article/commentlist/CommentPost.vue";
-
-
+import CommentPost from "@/components/content/article/commentlist/CommentPost";
+import CommentReply from "@/components/content/article/commentlist/CommentReply";
 
 export default {
   name: "ArticleContent",
@@ -126,7 +133,9 @@ export default {
       totalCommentCount: 0,
       isPostShow: false,
       showShare: false,
-      commentList:[],
+      commentList: [],
+      isReplyShow: false,
+      currentComment: {},
       options: [
         [
           { name: "微信", icon: "wechat" },
@@ -139,10 +148,17 @@ export default {
       ],
     };
   },
+  
+   provide: function () {
+    return {
+      articleId: this.articleId
+    }
+  },
   components: {
     FollowUser,
     CommentList,
-    CommentPost
+    CommentPost,
+    CommentReply,
   },
   props: {
     articleId: {
@@ -196,11 +212,16 @@ export default {
         };
       });
     },
-    onPostSuccess(data){
-      this.isPostShow=false;
-      this.totalCommentCount++
+    onPostSuccess(data) {
+      this.isPostShow = false;
+      this.totalCommentCount++;
       console.log(data.new_obj);
-      this.commentList.unshift(data.new_obj)
+      this.commentList.unshift(data.new_obj);
+    },
+    onReplyClick(comment) {
+      console.log(comment);
+      this.currentComment = comment;
+      this.isReplyShow = true;
     },
     onSelect(option) {
       Toast(option.name);
@@ -302,6 +323,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: -1;
   display: flex;
   justify-content: space-around;
   align-items: center;

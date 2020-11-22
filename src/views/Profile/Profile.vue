@@ -124,7 +124,7 @@ export default {
 <style scoped>
 .header {
   height: 361px;
-  background: url("~@/assets/img/profile/banner.png");
+  background: url("~@/assets/img/profile/banner.jpg");
   background-size: cover;
 }
 

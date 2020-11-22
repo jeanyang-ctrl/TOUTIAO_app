@@ -1,33 +1,39 @@
 <template>
-  <van-cell class="comment-item" v-for="(item, index) in comments" :key="index">
+  <van-cell class="comment-item" >
     <!-- 头像 -->
     <template #icon>
-      <van-image class="avatar" round fit="cover" :src="item.aut_photo" />
+      <van-image class="avatar" round fit="cover" :src="comment.aut_photo" />
     </template>
 
     <template #title>
       <div class="title-wrap">
-        <div class="user-name">{{ item.aut_name }}</div>
+        <div class="user-name">{{ comment.aut_name }}</div>
 
         <van-button
           class="like-btn"
-          :icon="item.is_liking ? 'good-job' : 'good-job-o'"
+          :icon="comment.is_liking ? 'good-job' : 'good-job-o'"
           :loading="commentLoading"
-          @click="onCommentLike(item)"
+          @click="onCommentLike"
         >
-          {{ item.like_count || "赞" }}
+          {{ comment.like_count || "赞" }}
         </van-button>
       </div>
     </template>
 
     <template #label>
       <div>
-        <p class="comment-content">{{ item.content }}</p>
+        <p class="comment-content">{{comment.content }}</p>
         <div class="bottom-info">
-          <span class="comment-pubdate">{{ item.pubdate }}</span>
-          <van-button class="reply-btn" round>
-            回复 {{ item.reply_count }}
+          <span class="comment-pubdate">{{ comment.pubdate }}</span>
+          <!-- 点击回复，向外发送事件， -->
+          <van-button
+            class="reply-btn"
+            round
+            @click="$emit('reply-click', comment)"
+          >
+            回复 {{ comment.reply_count }}
           </van-button>
+          <!-- 回复评论    结束 -->
         </div>
       </div>
     </template>
@@ -45,27 +51,31 @@ export default {
     };
   },
   props: {
-    comments: {
-      type: Array,
-      required: true,
+    // comments: {
+    //   type: Array,
+    //   required: true,
+    // },
+     comment:{
+      type:Object,
+      required:true
     },
   },
   methods: {
-    async onCommentLike(comment) {
+    async onCommentLike() {
       this.commentLoading = true;
       try {
-        if (!comment.is_liking) {
-          const { data } = await addCommentLike(comment.com_id);
+        if (!this.comment.is_liking) {
+          const { data } = await addCommentLike(this.comment.com_id);
           // 增加点赞数
-          comment.like_count++;
+          this.comment.like_count++;
         } else {
-          const { data } = await deleteCommentLike(comment.com_id);
-          comment.like_count--;
+          const { data } = await deleteCommentLike(this.comment.com_id);
+          this.comment.like_count--;
         }
       } catch (err) {
         this.$toast("操作失败");
       }
-      comment.is_liking = !comment.is_liking;
+      this.comment.is_liking = !this.comment.is_liking;
       this.commentLoading = false;
     },
   },
