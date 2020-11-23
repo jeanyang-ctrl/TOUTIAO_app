@@ -21,7 +21,9 @@ import {
   Search,
   Loading,
   Divider,
-  ShareSheet
+  ShareSheet,
+  Picker ,
+  DatetimePicker
 } from "vant";
 import App from "./App.vue";
 import router from "./router";
@@ -42,6 +44,7 @@ createApp(App)
   .use(Dialog)
   .use(Toast)
   .use(Cell)
+  .use(Picker)
   .use(PullRefresh)
   .use(CellGroup)
   .use(VanImage)
@@ -53,6 +56,7 @@ createApp(App)
   .use(Icon)
   .use(Search)
   .use(Field)
+  .use(DatetimePicker)
   .use(ShareSheet)
   .use(store)
   .use(router)

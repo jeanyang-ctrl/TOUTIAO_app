@@ -26,6 +26,8 @@ const ArticleContent = () =>
   );
 
 const UserPage = () => import("@/components/content/user/UserPage.vue" );
+const UserProfile = () => import("@/views/Profile/userprofile/UserProfile" );
+
 
 const routes = [
   {
@@ -33,6 +35,11 @@ const routes = [
     name: "user",
     component: UserPage,
     props: true,
+  },
+  {
+    path: '/user/profile',
+    name: 'userprofile',
+    component: UserProfile
   },
   {
     path: "/login",

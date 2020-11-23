@@ -83,3 +83,49 @@ export const deleteFollow = target => {
     }
   })
 }
+/**
+ * 获取当前登录用户的个人资料
+ */
+export const getUserProfile = target => {
+  return request({
+    method: 'GET',
+    url: '/app/v1_0/user/profile',
+    headers: {
+      // 注意：该接口需要授权才能访问
+      //       token的数据格式：Bearer token数据，注意 Bearer 后面有个空格
+      Authorization: `Bearer ${store.state.user.token}`
+    }
+  })
+}
+
+/**
+ * 更新用户资料
+ */
+export const updateUserProfile = data => {
+  return request({
+    method: 'PATCH',
+    url: '/app/v1_0/user/profile',
+    data,
+    headers: {
+      // 注意：该接口需要授权才能访问
+      //       token的数据格式：Bearer token数据，注意 Bearer 后面有个空格
+      Authorization: `Bearer ${store.state.user.token}`
+    }
+  })
+}
+
+/**
+ * 更新用户照片资料
+ */
+export const updateUserPhoto = data => {
+  return request({
+    method: 'PATCH',
+    url: '/app/v1_0/user/photo',
+    data,
+    headers: {
+      // 注意：该接口需要授权才能访问
+      //       token的数据格式：Bearer token数据，注意 Bearer 后面有个空格
+      Authorization: `Bearer ${store.state.user.token}`
+    }
+  })
+}

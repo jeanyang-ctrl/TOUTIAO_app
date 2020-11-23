@@ -8,7 +8,7 @@
           <span class="name">{{ userInfo.name }}</span>
         </div>
         <div class="right">
-          <van-button size="mini" round>编辑资料</van-button>
+          <van-button size="mini" round  to="/user/profile">编辑资料</van-button>
         </div>
       </div>
       <div class="data-stats">
@@ -65,7 +65,7 @@
 
     <van-cell class="bd" title="记录新鲜事" is-link />
     <van-cell class="bd bd-w" title="小智同学" is-link />
-     <van-grid class=" mb-9" :column-num="4" border="true">
+     <van-grid class=" mb-9" :column-num="4" >
       <van-grid-item
         v-for="value in 8"
         :key="value"

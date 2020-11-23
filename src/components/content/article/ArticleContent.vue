@@ -21,14 +21,14 @@
         <!-- 用户信息 -->
         <van-cell class="user-info" center :border="false">
           <template #icon>
-           <div @click="$router.replace(`/user/${article.aut_id}`)">
+            <div @click="$router.replace(`/user/${article.aut_id}`)">
               <van-image
-              class="avatar"
-              round
-              fit="cover"
-              :src="article.aut_photo"
-            />
-           </div>
+                class="avatar"
+                round
+                fit="cover"
+                :src="article.aut_photo"
+              />
+            </div>
           </template>
           <template #title>
             <div class="user-name">{{ article.aut_name }}</div>
@@ -52,7 +52,7 @@
         <van-divider>正文结束</van-divider>
         <!-- 评论区域 -接收回复的事件 -->
         <comment-list
-          :source="article.aut_id"   
+          :source="article.aut_id"
           :list="commentList"
           @onload-success="totalCommentCount = $event.total_count"
           @reply-click="onReplyClick"
@@ -62,10 +62,10 @@
           v-model:show="isReplyShow"
           position="bottom"
           closeable
-           close-icon-position="top-left"
+          close-icon-position="top-left"
           :style="{ height: '90%' }"
         >
-          <comment-reply v-if="isReplyShow" :comment="currentComment"/>
+          <comment-reply v-if="isReplyShow" :comment="currentComment" />
         </van-popup>
         <!-- 加载完成结束------文章详情 -->
       </div>
@@ -148,11 +148,11 @@ export default {
       ],
     };
   },
-  
-   provide: function () {
+
+  provide: function() {
     return {
-      articleId: this.articleId
-    }
+      articleId: this.articleId,
+    };
   },
   components: {
     FollowUser,
@@ -243,6 +243,8 @@ export default {
   bottom: 88px;
   overflow-y: scroll;
   background-color: #fff;
+    z-index: -1;
+
 }
 ::v-deep .article-detail .article-title {
   font-size: 40px;
@@ -323,7 +325,6 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: -1;
   display: flex;
   justify-content: space-around;
   align-items: center;
